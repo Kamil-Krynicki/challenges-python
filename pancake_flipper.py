@@ -65,7 +65,7 @@ def do_find_lineal(input, K):
     return flips if is_final(new_input) else -1
 
 
-with open('input/Pancake-flipper-A-large-practice.in') as f:
+with open('input/A-large-practice.in') as f:
     print(f.__next__())
     i = 1
     a = lambda x: str(x) if x >= 0 else "IMPOSSIBLE"
@@ -73,5 +73,5 @@ with open('input/Pancake-flipper-A-large-practice.in') as f:
     for line in f:
         split, K = line.strip().split(' ')
         result = do_find_lineal([x == '+' for x in split], int(K))
-        print('Case #' + str(i) +':', a(result))
+        print('Case #{}: {}'.format(i, a(result)))
         i += 1
