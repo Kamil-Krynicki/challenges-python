@@ -3,7 +3,7 @@ def prv_tidy(value):
     for i in reversed(range(1, len(s))):
         if s[i] < s[i-1]:
             s[i-1] -= 1
-            s[i:] = [9 for x in s[i:]]
+            s[i:] = [9]*(len(s) - i)
 
     return int(''.join(str(x) for x in s))
 
