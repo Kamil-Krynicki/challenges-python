@@ -1,35 +1,28 @@
 def discover_gold(K, C, S):
-    if C == 1:
-        if S < K:
-            return impossible()
-        else:
-            return ' '.join(map(str, every_bucket(K)))
+    if S < K / C:
+        return impossible()
     else:
-        if S < K / 2:
-            return impossible()
-        else:
-            return ' '.join(map(str, every_second_bucket(C, K)))
+        return ' '.join(map(str, buckets(K, C)))
 
 
 def impossible():
     return 'IMPOSSIBLE'
 
 
-def every_bucket(K):
-    return [bucket for bucket in range(1, K + 1)]
+def buckets(K, C):
+    if C > K:
+        C = K
 
+    seed = sum(i * K ** (C - i - 1) for i in range(C))
+    step = sum(K ** i for i in range(C))
 
-def every_second_bucket(C, K):
-    bucket_size = K ** (C - 1)
-    result = [(bucket - 1) * bucket_size + 1 + bucket for bucket in range(1, K, 2)]
-    if K % 2 == 1:
-        result.append(bucket_size * K)
+    result = [seed + i * step + 1 for i in range(0, K - C + 1, C)]
+
+    if not K % C == 0:
+        result.append(seed + (K - C) * step + 1)
+
     return result
 
-
-K = 2
-C = 3
-S = 3
 
 with open('input/D-large-practice.in') as f:
     f.__next__()
