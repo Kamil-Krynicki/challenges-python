@@ -9,15 +9,8 @@ def min_consumption_time(pancake_distribution):
         min_time = min(min_time, consumption_time + redistribution_time)
     return min_time
 
-
 with open('input/B-large-practice.in') as f:
-    f.__next__()
-    f.__next__()
-
-
-    i = 1
-    for N in f:
-        distribution = N.strip().split(' ')
-        print('Case #{}: {}'.format(i, min_consumption_time(list(map(int, distribution)))))
-        f.__next__()
-        i += 1
+    lines = f.read().split('\n')
+    for i in range(int(lines[0])):
+        distribution = lines[2 * i + 2].split(' ')
+        print('Case #{}: {}'.format(i + 1, min_consumption_time(list(map(int, distribution)))))
