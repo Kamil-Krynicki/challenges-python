@@ -37,14 +37,14 @@ def ends_with(values, expected):
 
 
 def compacts_to(values, expected, reduction, at, max_len):
-    index = at
-    result = '1'
-    while index < max_len:
-        result = reduction(result, values[index])
-        index += 1
+    i = at
+    acc = '1'
+    while i < max_len:
+        acc = reduction(acc, values[i])
+        i += 1
 
-        if result == expected:
-            return index
+        if acc == expected:
+            return i
 
     return -1
 
